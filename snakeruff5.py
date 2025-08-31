@@ -12,6 +12,7 @@ sc = py.display.set_mode((800, 600))
 c5=(255,0,0)
 text5 = font.render("Enter speed (1-9)", True, (255, 255, 255))
 
+
 def get_speed():
     speed = 0
     selecting = True
