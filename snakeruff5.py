@@ -6,8 +6,10 @@ font = py.font.SysFont(None, 48)
 c1 = (0, 0, 0)
 c2 = (0, 255, 0)
 c3 = (255, 0, 0)
+c4=(128,200,0)
 clock = py.time.Clock()
 sc = py.display.set_mode((800, 600))
+c5=(255,0,0)
 text5 = font.render("Enter speed (1-9)", True, (255, 255, 255))
 
 def get_speed():
@@ -36,7 +38,21 @@ def game():
     x, y = 100, 100
     dx, dy = 0, 0
     start = False
-    snake = [[100, 100]]
+    n1=2
+
+
+    
+    snake = []
+    for i in range(n1):
+        x+=20
+        bb=[x,y]
+        snake.append(bb)
+            
+        
+    
+
+
+    # snake = [[100, 100]]
     hi = True
     run = True
 
@@ -85,29 +101,156 @@ def game():
 
         for i, j in enumerate(snake):
             if i == len(snake) - 1 :
+                c4=(0,255,0)
+
+                color = (0, 50, 255) 
+                if dx==-20 and dy==0:
+                    py.draw.circle(sc, color, [j[0]+20, j[1]-dx/2], 10)  #main head
+                    py.draw.circle(sc,c4,[(j[0]+10), (j[1]-dx/2)-10],5)   #ring upper
+                    py.draw.circle(sc,c4,[(j[0]+10), (j[1]-dx/2)+10],5)     #RING lower
+
+                    if (abs(z1-j[0])<150) and (abs(z2-j[1])<150):
+                        py.draw.circle(sc,c5,[(j[0]+20)-5, (j[1]-dx/2)+5], 3)   
+                        py.draw.circle(sc,c5,[(j[0]+20-5), (j[1]-dx/2)-5], 3)
+
+                elif dx==20 and dy==0:
+                    py.draw.circle(sc, color, [j[0], j[1]+dx/2], 10)
+                    py.draw.circle(sc,c4,[(j[0]+10), (j[1]-dx/2)+30],5)
+                    py.draw.circle(sc,c4,[(j[0]+10), (j[1]-dx/2)+10],5)
+
+                    if (abs(z1-j[0])<150) and (abs(z2-j[1])<150):
+                        py.draw.circle(sc,c5,[(j[0]+20)-15, (j[1]-dx/2)+5+20], 3)   
+                        py.draw.circle(sc,c5,[(j[0]+20-15), (j[1]-dx/2)-5+20], 3)
+
+                elif dx==0 and dy==-20:
+                    py.draw.circle(sc, color, [j[0]-dy/2, j[1]+20], 10)
+                    py.draw.circle(sc,c4,[(j[0]), (j[1]-dx/2)+10],5)
+                    py.draw.circle(sc,c4,[(j[0]+20), (j[1]-dx/2)+10],5)
+
+                    if (abs(z1-j[0])<150) and (abs(z2-j[1])<150):
+                        py.draw.circle(sc,c5,[(j[0]+20)-15+10, (j[1]-dx/2)+5+20-10], 3)   
+                        py.draw.circle(sc,c5,[(j[0]+20-15), (j[1]-dx/2)-5+20], 3)
+                elif dx==0 and dy==20:
+                    py.draw.circle(sc, color, [j[0]+dy/2, j[1]], 10)
+                    py.draw.circle(sc,c4,[(j[0]), (j[1]-dx/2)+10],5)
+                    py.draw.circle(sc,c4,[(j[0]+20), (j[1]-dx/2)+10],5)
+
+                    if (abs(z1-j[0])<150) and (abs(z2-j[1])<150):
+                        py.draw.circle(sc,c5,[(j[0]+20)-15+10, (j[1]-dx/2)+5+20-20], 3)   
+                        py.draw.circle(sc,c5,[(j[0]+20-15), (j[1]-dx/2)-5+20-10], 3)
+
+            elif i==0:
+                c4=(128,200,0)
 
                 color = (0, 0, 255) 
                 if dx==-20 and dy==0:
-                    py.draw.circle(sc, color, [j[0]+20, j[1]-dx/2], 10)
+                    py.draw.circle(sc, color, [j[0]+20, j[1]+10], 10)
+                    py.draw.circle(sc,c4,[(j[0]+10), (j[1]+10)-10],5)
+                    py.draw.circle(sc,c4,[(j[0]+10), (j[1]+10)+10],5)
+
+                    # py.draw.circle(sc,c4,[(j[0]+30), (j[1]+10)-10],5)
+                    
+
+                    # py.draw.circle(sc,c4,[(j[0]), (j[1]+10)+10],5)
+                    # py.draw.circle(sc,c4,[(j[0]), (j[1]+10)+10],5)
+                    
+
                 elif dx==20 and dy==0:
                     py.draw.circle(sc, color, [j[0], j[1]+dx/2], 10)
+                    py.draw.circle(sc,c4,[(j[0]+10), (j[1]-dx/2)+30],5)
+                    py.draw.circle(sc,c4,[(j[0]+10), (j[1]-dx/2)+10],5)
+                    # py.draw.circle(sc,c4,[(j[0]-10), (j[1]-dx/2)+10],5)
+                    
+
+                    
+
                 elif dx==0 and dy==-20:
-                    py.draw.circle(sc, color, [j[0]-dy/2, j[1]+20], 10)
+                    py.draw.circle(sc, color, [j[0]+10, j[1]+20], 10)
+                    py.draw.circle(sc,c4,[(j[0]), (j[1])+10],5)
+                    py.draw.circle(sc,c4,[(j[0]+20), (j[1])+10],5)
+                    # py.draw.circle(sc,c4,[(j[0]), (j[1])+30],5)
+
                 elif dx==0 and dy==20:
                     py.draw.circle(sc, color, [j[0]+dy/2, j[1]], 10)
-                
-                
+                    py.draw.circle(sc,c4,[(j[0]), (j[1]-dx/2)+10],5)
+                    py.draw.circle(sc,c4,[(j[0]+20), (j[1]-dx/2)+10],5)
+                    # py.draw.circle(sc,c4,[(j[0]), (j[1]-dx/2)-10]
+
 
             else:
-                color=(0, 0, 255) 
-                py.draw.rect(sc, color, (j[0], j[1], 20, 20))
+                c4=(128,200,0)
+
+                color = (0, 0, 255) 
+                if dx==-20 and dy==0:
+                    py.draw.circle(sc, color, [j[0]+20, j[1]+10], 10)
+                    py.draw.circle(sc,c4,[(j[0]+10), (j[1]+10)-10],5)
+                    py.draw.circle(sc,c4,[(j[0]+10), (j[1]+10)+10],5)
+
+                    py.draw.circle(sc,c4,[(j[0]+30), (j[1]+10)-10],5)
+                    
+
+                    # py.draw.circle(sc,c4,[(j[0]), (j[1]+10)+10],5)
+                    # py.draw.circle(sc,c4,[(j[0]), (j[1]+10)+10],5)
+                    
+
+                elif dx==20 and dy==0:
+                    py.draw.circle(sc, color, [j[0], j[1]+dx/2], 10)
+                    py.draw.circle(sc,c4,[(j[0]+10), (j[1]-dx/2)+30],5)
+                    py.draw.circle(sc,c4,[(j[0]+10), (j[1]-dx/2)+10],5)
+                    py.draw.circle(sc,c4,[(j[0]-10), (j[1]-dx/2)+10],5)
+                    
+
+                    
+
+                elif dx==0 and dy==-20:
+                    py.draw.circle(sc, color, [j[0]+10, j[1]+20], 10)
+                    py.draw.circle(sc,c4,[(j[0]), (j[1])+10],5)
+                    py.draw.circle(sc,c4,[(j[0]+20), (j[1])+10],5)
+                    py.draw.circle(sc,c4,[(j[0]), (j[1])+30],5)
+
+                elif dx==0 and dy==20:
+                    py.draw.circle(sc, color, [j[0]+dy/2, j[1]], 10)
+                    py.draw.circle(sc,c4,[(j[0]), (j[1]-dx/2)+10],5)
+                    py.draw.circle(sc,c4,[(j[0]+20), (j[1]-dx/2)+10],5)
+                    py.draw.circle(sc,c4,[(j[0]), (j[1]-dx/2)-10],5) 
+                
+
+
+            
+            # elif i == 0:
+
+            #     color = (0, 0, 255) 
+            #     if dx==-20 and dy==0:
+            #         py.draw.circle(sc, color, [j[0]+20, j[1]-dx/2], 10)
+            #         py.draw.circle(sc,c4,[(j[0]+10), (j[1]-dx/2)-10],5)
+            #         py.draw.circle(sc,c4,[(j[0]+10), (j[1]-dx/2)+10],5)
+
+            #     elif dx==20 and dy==0:
+            #         py.draw.circle(sc, color, [j[0], j[1]+dx/2], 10)
+            #         py.draw.circle(sc,c4,[(j[0]+10), (j[1]-dx/2)+30],5)
+            #         py.draw.circle(sc,c4,[(j[0]+10), (j[1]-dx/2)+10],5)
+                    
+
+            #     elif dx==0 and dy==-20:
+            #         py.draw.circle(sc, color, [j[0]-dy/2, j[1]+20], 10)
+            #         py.draw.circle(sc,c4,[(j[0]), (j[1]-dx/2)+10],5)
+            #         py.draw.circle(sc,c4,[(j[0]+20), (j[1]-dx/2)+10],5)
+            #     elif dx==0 and dy==20:
+            #         py.draw.circle(sc, color, [j[0]+dy/2, j[1]], 10)
+            #         py.draw.circle(sc,c4,[(j[0]), (j[1]-dx/2)+10],5)
+            #         py.draw.circle(sc,c4,[(j[0]+20), (j[1]-dx/2)+10],5)    
+                
+
+            # else:
+            #     color=(0, 0, 255) 
+            #     py.draw.rect(sc, color, (j[0], j[1], 20, 20))
 
         py.draw.rect(sc, c3, (z1, z2, 20, 20))
 
         score_text = font.render("Score: " + str(len(snake) - 1), True, (255, 255, 255))
         sc.blit(score_text, (10, 10))
 
-        clock.tick(speed * 2 + 5)  # Dynamic speed
+        clock.tick(speed *2+5)  # Dynamic speed
         py.display.update()
 
 def game_over():
